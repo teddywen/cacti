@@ -1,0 +1,10 @@
+--- cli/host_update_template.php	2011-09-25 21:04:21.000000000 -0400
++++ cli/host_update_template.php	2011-09-25 21:10:07.621946045 -0400
+@@ -136,6 +136,7 @@
+ 
+ 			foreach ($graph_templates as $graph_template) {
+ 				db_execute("REPLACE INTO host_graph (host_id, graph_template_id) VALUES (" . $host["id"] . ", " . $graph_template["graph_template_id"] . ")");
++				api_plugin_hook_function('add_graph_template_to_host', array("host_id" => $host["id"], "graph_template_id" => $graph_template["graph_template_id"]));
+ 			}
+ 		}
+ 	}

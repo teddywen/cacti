@@ -1,0 +1,9 @@
+--- include/global_settings.php	2011-09-25 21:04:22.000000000 -0400
++++ include/global_settings.php	2011-09-25 21:10:07.625945615 -0400
+@@ -1190,4 +1190,6 @@
+ 		)
+ 	);
+ 
++api_plugin_hook('config_settings');
++
+ ?>

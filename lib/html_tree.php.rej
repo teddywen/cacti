@@ -1,0 +1,19 @@
+--- lib/html_tree.php	2011-09-25 21:04:21.000000000 -0400
++++ lib/html_tree.php	2011-09-25 21:10:07.630945115 -0400
+@@ -985,6 +985,16 @@
+ 	<?php
+ 	html_end_box();
+ 
++	api_plugin_hook_function('graph_tree_page_buttons',
++		array(
++			'treeid' => $tree_id,
++			'leafid' => $leaf_id,
++			'mode' => 'tree',
++			'timespan' => $_SESSION["sess_current_timespan"],
++			'starttime' => get_current_graph_start(),
++			'endtime' => get_current_graph_end())
++	);
++
+ 	html_start_box("", "100%", $colors["header"], "3", "center", "");
+ 
+ 	$graph_list = array();

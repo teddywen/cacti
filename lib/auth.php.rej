@@ -1,0 +1,21 @@
+--- lib/auth.php	2011-09-25 21:04:21.000000000 -0400
++++ lib/auth.php	2011-09-25 21:10:07.629945213 -0400
+@@ -121,8 +121,9 @@
+ 		}
+ 	}
+ 
+-	return true;
++	api_plugin_hook_function('copy_user', array('template_id' => $template_id, 'new_id' => $new_id));
+ 
++	return true;
+ }
+ 
+ 
+@@ -152,6 +153,7 @@
+ 	db_execute("delete from settings_graphs where user_id=" . $user_id);
+ 	db_execute("delete from settings_tree where user_id=" . $user_id);
+ 
++	api_plugin_hook_function('user_remove', $user_id);
+ }
+ 
+ /* user_disable - disable a user account

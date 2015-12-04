@@ -1,0 +1,28 @@
+--- lib/api_device.php	2011-09-25 21:04:21.000000000 -0400
++++ lib/api_device.php	2011-09-25 21:10:07.626945512 -0400
+@@ -141,6 +141,8 @@
+ 	$save["max_oids"]             = form_input_validate($max_oids, "max_oids", "^[0-9]+$", true, 3);
+ 	$save["device_threads"]       = form_input_validate($device_threads, "device_threads", "^[0-9]+$", true, 3);
+ 
++	$save = api_plugin_hook_function('api_device_save', $save);
++
+ 	$host_id = 0;
+ 
+ 	if (!is_error_message()) {
+@@ -180,11 +182,16 @@
+ 			if (sizeof($graph_templates) > 0) {
+ 			foreach ($graph_templates as $graph_template) {
+ 				db_execute("replace into host_graph (host_id,graph_template_id) values ($host_id," . $graph_template["graph_template_id"] . ")");
++				api_plugin_hook_function('add_graph_template_to_host', array("host_id" => $host_id, "graph_template_id" => $graph_template["graph_template_id"]));
+ 			}
+ 			}
+ 		}
+ 	}
+ 
++	# now that we have the id of the new host, we may plugin postprocessing code
++	$save["id"] = $host_id;
++	api_plugin_hook_function('api_device_new', $save);
++
+ 	return $host_id;
+ }
+ 

@@ -1,0 +1,12 @@
+--- include/global_constants.php	2011-09-25 21:04:22.000000000 -0400
++++ include/global_constants.php	2011-09-25 21:10:07.626945512 -0400
+@@ -182,4 +182,9 @@
+ define("SNMP_CMDPHP", 1);
+ define("SNMP_WEBUI", 2);
+ 
++define('OPER_MODE_NATIVE', 0);
++define('OPER_MODE_RESKIN', 1);
++define('OPER_MODE_IFRAME_NONAV', 2);
++define('OPER_MODE_NOTABS', 3);
++
+ ?>
