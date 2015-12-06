@@ -25,9 +25,9 @@
 /* make sure these values refect your actual database/host/user/password */
 $database_type = "mysql";
 $database_default = "cacti";
-$database_hostname = "139.196.59.18";
+$database_hostname = "127.0.0.1";
 $database_username = "cacti";
-$database_password = "cacti";
+$database_password = "";
 $database_port = "3306";
 $database_ssl = false;
 
